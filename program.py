@@ -114,5 +114,6 @@ def photo():
 def carousel():
     return render_template('carousel.html')
 
+
 if '__main__' == __name__:
     app.run(port=8080, host='127.0.0.1')
