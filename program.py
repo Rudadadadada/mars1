@@ -1,5 +1,5 @@
-from flask import Flask
-import flask
+from flask import Flask, request, render_template
+
 
 app = Flask(__name__)
 
@@ -64,6 +64,14 @@ def bootstrap():
                     </h5>
                   </body>
                 </html>'''
+
+
+@app.route('/astronaut_selection', methods=['POST', 'GET'])
+def selection_form():
+    if request.method == 'GET':
+        return render_template('form.html')
+    elif request.method == 'POST':
+        return render_template('form1.html')
 
 
 if '__main__' == __name__:
