@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from planets import planets
 
 
 app = Flask(__name__)
@@ -72,6 +73,19 @@ def selection_form():
         return render_template('form.html')
     elif request.method == 'POST':
         return render_template('form1.html')
+
+
+@app.route('/choice/<planet_name>')
+def choice(planet_name):
+    dictionary = dict()
+    if planet_name.lower() in planets:
+        dictionary['planet_name'] = planet_name.lower().capitalize()
+        for i in range(1, 6):
+            dictionary['text' + str(i)] = planets[planet_name.lower()][i - 1]
+        return render_template('choice.html', **dictionary)
+    else:
+        dictionary['planet_name'] = planet_name.lower().capitalize()
+        return render_template('choice1.html', **dictionary)
 
 
 if '__main__' == __name__:
