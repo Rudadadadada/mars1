@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template
 from planets import planets
+from PIL import Image
+from io import BytesIO
 
 
 app = Flask(__name__)
@@ -86,6 +88,26 @@ def choice(planet_name):
     else:
         dictionary['planet_name'] = planet_name.lower().capitalize()
         return render_template('choice1.html', **dictionary)
+
+
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def result(nickname, level, rating):
+    dictionary = dict()
+    dictionary['nickname'] = nickname.lower().capitalize()
+    dictionary['level'] = str(level).lower().capitalize()
+    dictionary['rating'] = str(rating).lower().capitalize()
+    return render_template('result.html', **dictionary)
+
+
+@app.route('/load_photo', methods=['POST', 'GET'])
+def photo():
+    if request.method == 'GET':
+        return render_template('photo.html')
+    elif request.method == 'POST':
+        photo = request.files['photo']
+        im = Image.open(BytesIO(photo.read()))
+        im.save('static/img/person.png')
+        return render_template('photo1.html')
 
 
 if '__main__' == __name__:

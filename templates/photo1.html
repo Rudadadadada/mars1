@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+    <title>Отбор астронавтов</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <h1>Загрузка фотографии</h1>
+        <h2>для участия в миссии</h2>
+    </div>
+    <form id='profile_form' method='post' enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="photo">Приложите фотографию</label>
+            <input type="file" class="form-control-file" id="photo" name="photo">
+        </div>
+        <img src="static/img/person.png" width="400" height="500">
+        <br>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</body>
+</html>
